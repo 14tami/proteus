@@ -9,13 +9,16 @@ from proteus import Context
 import sys
 
 # (!) not the greatest for getting the file name but it works
-#name = str(sys.argv[0][:-3])
-name = "SWFlow"
+name = str(sys.argv[0][:-3])
+parun_passed = False
 for i in range(len(sys.argv)):
-    if '-f' in sys.argv[i]:
-        assert sys.argv[i+1][-3:], "fileName must end with .py"
-        name = sys.argv[i+1][:-3]
+    if 'parun' in sys.argv[i]:
+        parun_passed = True
+    if parun_passed is True and sys.argv[i][-3:] == '.py':
+        name = sys.argv[i][:-3]
         break
+    else:
+        name = "SWFlow"
 
 # ***************************** #
 # ********** CONTEXT ********** #

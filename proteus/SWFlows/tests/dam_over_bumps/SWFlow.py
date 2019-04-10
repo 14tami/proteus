@@ -3,22 +3,23 @@ from builtins import object
 from past.utils import old_div
 from proteus import *
 from proteus.default_p import *
+from proteus.mprans import SW2D
 from proteus.mprans import SW2DCV
 from proteus.Domain import RectangularDomain
 import numpy as np
 from proteus import (Domain, Context,
                      MeshTools as mt)
 from proteus.Profiling import logEvent
-import proteus.SWFlows.SWFlowProblem as SWFlowProblem 
+import proteus.SWFlows.SWFlowProblem as SWFlowProblem
 
 # *************************** #
 # ***** GENERAL OPTIONS ***** #
 # *************************** #
 opts= Context.Options([
     ('sw_model',0,"sw_model = {0,1} for {SWEs,DSWEs}"),
-    ("final_time",100.0,"Final time for simulation"),
+    ("final_time",30.0,"Final time for simulation"),
     ("dt_output",0.1,"Time interval to output solution"),
-    ("refinement",5,"Level of refinement"),
+    ("refinement",4,"Level of refinement"),
     ("cfl",0.33,"Desired CFL restriction"),
     ("reflecting_BCs",True,"Use reflecting BCs")
     ])
@@ -51,7 +52,7 @@ mannings = k
 
 def bathymetry_function(X):
     x = X[0]
-    y = X[1] 
+    y = X[1]
     bump1 = 1-1./8*np.sqrt((x-30)**2+(y-6)**2)
     bump2 = 1-1./8*np.sqrt((x-30)**2+(y-24)**2)
     bump3 = 3-3./10*np.sqrt((x-47.5)**2+(y-15)**2)
