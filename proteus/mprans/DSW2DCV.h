@@ -2057,9 +2057,9 @@ public:
             dHij = fmin(dLowij, dEVij);
             muHij = fmin(muLowij, dEVij);
             // Assume no EV for now. -EJT
-            dHij = dLij;
-            muLij = 1.01 * muLij; // multiply by 1.01 for hack in paper
-            muHij = muLij;
+            // dHij = dLij;
+            //muLij = 1.01 * muLij; // multiply by 1.01 for hack in paper
+            // muHij = muLij;
             // compute dij_minus_muij times star solution terms
             ith_dHij_minus_muHij_times_hStarStates +=
                 (dHij - muHij) * (hStarji - hStarij);

@@ -50,9 +50,9 @@ femSpaces = {0: FESpace['basis'],
 # ************************************** #
 # ********** NONLINEAR SOLVER ********** #
 # ************************************** #
-multilevelNonlinearSolver  = Newton
-fullNewtonFlag = False #NOTE: False just if the method is explicit
-if (LUMPED_MASS_MATRIX==1):
+multilevelNonlinearSolver = Newton
+fullNewtonFlag = False  # NOTE: False just if the method is explicit
+if (LUMPED_MASS_MATRIX == 1):
     levelNonlinearSolver = ExplicitLumpedMassMatrixShallowWaterEquationsSolver
 else:
     levelNonlinearSolver = ExplicitConsistentMassMatrixShallowWaterEquationsSolver
@@ -70,7 +70,7 @@ numericalFluxType = SW2DCV.NumericalFlux
 # ************************************ #
 matrix = SparseMatrix
 multilevelLinearSolver = LU
-levelLinearSolver = LU
+levelLinearSolver = KSP_petsc4py  # LU
 levelNonlinearSolverConvergenceTest = 'r'
 linearSolverConvergenceTest = 'r-true'
 
@@ -82,4 +82,4 @@ nl_rtol_res = 0.0
 l_atol_res = 1.0e-7
 l_rtol_res = 0.0
 tolFac = 0.0
-maxLineSearches=0
+maxLineSearches = 0

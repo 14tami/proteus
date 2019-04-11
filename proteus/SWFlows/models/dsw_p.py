@@ -19,7 +19,6 @@ initialConditions = mySWFlowProblem.initialConditions
 boundaryConditions = mySWFlowProblem.boundaryConditions
 bathymetry = mySWFlowProblem.bathymetry
 reflecting_BCs = mySWFlowProblem.reflectingBCs
-analyticalSolution = mySWFlowProblem.analyticalSolution
 
 # DOMAIN #
 nd = 2

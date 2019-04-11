@@ -3,7 +3,7 @@ from builtins import object
 from past.utils import old_div
 from proteus import *
 from proteus.default_p import *
-from proteus.mprans import SW2D
+from proteus.mprans import SW2DCV
 from proteus.mprans import DSW2DCV
 from proteus.Domain import RectangularDomain
 import numpy as np
@@ -31,14 +31,14 @@ opts = Context.Options([
     ("final_time", 4.0, "Final time for simulation"),
     ("dt_output", 0.1, "Time interval to output solution"),
     ("cfl", 0.33, "Desired CFL restriction"),
-    ("refinement", 4, "Refinement level")
+    ("refinement", 5, "Refinement level")
 ])
 
 ###################
 # DOMAIN AND MESH #
 ###################
-L = (12.0, 1.0)
-X_coords = (0.0, 12.0)  # this is domain, used in BCs
+L = (10.0, 1.0)
+X_coords = (0.0, 10.0)  # this is domain, used in BCs
 domain = RectangularDomain(L=L, x=[0, 0, 0])
 
 # CREATE REFINEMENT #
@@ -211,7 +211,6 @@ mySWFlowProblem = SWFlowProblem.SWFlowProblem(sw_model=opts.sw_model,
                                               domain=domain,
                                               initialConditions=initialConditions,
                                               boundaryConditions=boundaryConditions,
-                                              bathymetry=bathymetry_function,
-                                              analyticalSolution=analyticalSolution)
+                                              bathymetry=bathymetry_function)
 mySWFlowProblem.physical_parameters['LINEAR_FRICTION'] = 0
 mySWFlowProblem.physical_parameters['mannings'] = 0.0
